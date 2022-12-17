@@ -81,16 +81,15 @@ export default function Home() {
 						style={{ display: show ? "" : "none" }}>
 						<h2>Editar url:</h2>
 						<p className={styles.mylink}>
-							mylink.dev/
+              0one.vercel.app/
 							<input
 								className={styles.edited}
 								value={edit}
 								onChange={(e) => setEdit(e.target.value)}></input>
 						</p>
 						<button onClick={sendCustomLink}>Enviar</button>
-						{success && "✨✔✨"}
 						{success && (
-              <button onClick={() => navigator.clipboard.writeText(edit)}>
+              <button onClick={() => navigator.clipboard.writeText("0one.vercel.app/"+edit)}>
 								Copy
 							</button>
 						)}
@@ -102,11 +101,11 @@ export default function Home() {
 						style={{ display: showShortUrl ? "" : "none" }}>
 						<h2>Short Link:</h2>
 						<p className={styles.mylink}>
-							mylink.dev/
+              0one.vercel.app/
 							<input className={styles.edited} defaultValue={myLink}></input>
 						</p>
 						{success && (
-              <button onClick={() => navigator.clipboard.writeText(myLink)}>
+              <button onClick={() => navigator.clipboard.writeText("0one.vercel.app/"+myLink)}>
 								Copy
 							</button>
 						)}
