@@ -81,19 +81,24 @@ export default function Home() {
 						style={{ display: show ? "" : "none" }}>
 						<h2>Editar url:</h2>
 						<p className={styles.mylink}>
-              0one.vercel.app/
+							0one.vercel.app/
 							<input
 								className={styles.edited}
 								value={edit}
 								onChange={(e) => setEdit(e.target.value)}></input>
 						</p>
-						<button onClick={sendCustomLink}>Enviar</button>
-						{success && (
-              <button onClick={() => navigator.clipboard.writeText("0one.vercel.app/"+edit)}>
-								Copy
-							</button>
-						)}
-            <button onClick={restart}>X</button>
+						<div className={styles.options}>
+							<button onClick={sendCustomLink}>Enviar</button>
+							{success && (
+								<button
+									onClick={() =>
+										navigator.clipboard.writeText("0one.vercel.app/" + edit)
+									}>
+									Copy
+								</button>
+							)}
+							<button onClick={restart}>X</button>
+						</div>
 					</div>
 
 					<div
@@ -101,15 +106,20 @@ export default function Home() {
 						style={{ display: showShortUrl ? "" : "none" }}>
 						<h2>Short Link:</h2>
 						<p className={styles.mylink}>
-              0one.vercel.app/
+							0one.vercel.app/
 							<input className={styles.edited} defaultValue={myLink}></input>
 						</p>
-						{success && (
-              <button onClick={() => navigator.clipboard.writeText("0one.vercel.app/"+myLink)}>
-								Copy
-							</button>
-						)}
-            <button onClick={restart}>X</button>
+						<div className={styles.options}>
+							{success && (
+								<button
+									onClick={() =>
+										navigator.clipboard.writeText("0one.vercel.app/" + myLink)
+									}>
+									Copy
+								</button>
+							)}
+							<button onClick={restart}>X</button>
+						</div>
 					</div>
 				</div>
 			</main>
