@@ -21,7 +21,7 @@ export async function getServerSideProps(req, res) {
 			};
 		} else {
 			return {
-				props: { find: false  , message : "Url nnot Found" },
+				props: { find: false  , message : "Url not Found" },
 			};
 		}
 	} catch (error) {
