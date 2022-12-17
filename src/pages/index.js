@@ -62,7 +62,7 @@ export default function Home() {
 
 			<main className={styles.main}>
 				<h1 className={styles.title}>
-					Welcome to <a href="#">My links!</a>
+					Welcome to <a href="https://0one.vercel.app/">My links!</a>
 				</h1>
 
 				<p className={styles.description}>Personaliza tus links</p>
