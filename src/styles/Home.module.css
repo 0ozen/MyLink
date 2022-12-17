@@ -1,0 +1,185 @@
+.container {
+	padding: 0 2rem;
+}
+
+.main {
+	min-height: 100vh;
+	padding: 4rem 0;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.footer {
+	display: flex;
+	flex: 1;
+	padding: 2rem 0;
+	border-top: 1px solid #eaeaea;
+	justify-content: center;
+	align-items: center;
+}
+
+.footer a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-grow: 1;
+}
+
+.title a {
+	color: #0070f3;
+	text-decoration: none;
+}
+
+.title a:hover,
+.title a:focus,
+.title a:active {
+	text-decoration: underline;
+}
+
+.title {
+	margin: 0;
+	line-height: 1.15;
+	font-size: 4rem;
+}
+
+.title,
+.description {
+	text-align: center;
+}
+
+.description {
+	margin-top: 4rem;
+	margin-bottom: 2rem 0;
+	line-height: 1.5;
+	font-size: 1.5rem;
+}
+
+.grid {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	max-width: 800px;
+	width: 60%;
+}
+
+.card {
+	width: 100%;
+	position: relative;
+	padding: 1.5rem;
+	text-align: center;
+	transition: all 0.25s ease-in;
+	justify-content: center;
+	align-items: center;
+}
+.card input {
+	font-weight: 600;
+	text-align: center;
+	position: relative;
+	margin: 0;
+	padding: 16px 30px;
+	border-radius: 15px;
+	width: 90%;
+  outline: none;
+  border: none;
+}
+
+.card input:focus {
+	box-shadow: 0px 0px 30px 0 #274c6892;
+}
+
+.card button {
+	margin: 4px 4px;
+}
+
+.card button:hover {
+	background-color: rgb(187, 187, 187);
+}
+
+.cardShadow {
+	transform: translateY(-20px);
+}
+
+.cardShadow input {
+	pointer-events: none;
+	background-color: #222;
+	height: max-content;
+	width: 70%;
+}
+
+.cardShadow button {
+	background-color: #222;
+	pointer-events: none;
+	display: none; 
+}
+
+.card h2 {
+	margin: 0 0 1rem 0;
+	font-size: 1.5rem;
+}
+
+.card p {
+	margin: 0;
+	font-size: 1.25rem;
+	line-height: 1.5;
+}
+
+.cardEdit {
+	display: flex;
+	width: 100%;
+	padding: 24px;
+  gap: 5px;
+	align-items: center;
+	width: max-content;
+}
+
+.logo {
+	height: 1em;
+	margin-left: 0.5rem;
+}
+
+.edited {
+	border: none;
+	outline: none;
+  background-color: transparent;
+	padding: 5px 10px;
+	max-width: max-content;
+	border-top-right-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-decoration: solid;
+  text-shadow: 0px 0px 5px #111;
+}
+
+.mylink {
+  font-size: 1rem;
+  font-weight: 600;
+	background-color: rgb(100, 100, 100);
+	padding: 4px 15px;
+	max-width: max-content;
+	border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+	.grid {
+		width: 100%;
+		flex-direction: column;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	.card,
+	.footer {
+		border-color: #222;
+	}
+	.code {
+		background: #111;
+	}
+	.logo img {
+		filter: invert(1);
+	}
+}
