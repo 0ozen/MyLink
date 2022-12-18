@@ -2,10 +2,13 @@ import dbConnect from "../../utils/mongoose";
 import Url from "../../models/link";
 
 export default async function handler(req, res) {
-	try {
-		await dbConnect();
-
-		const data = await Url.findOne({ urlOriginal: req.body.link });
+  try {
+    await dbConnect();
+    let link = req.body.link
+    if (link.search(/^http[s]?\:\/\//) == -1) {
+      link = 'https://' + link;
+    }
+		const data = await Url.findOne({ urlOriginal: link });
 
 		if (data) {
 			data.customUrl = req.body.edit;
@@ -13,7 +16,7 @@ export default async function handler(req, res) {
 			return res.status(201).send(data.customUrl);
 		}
 
-		const newUrl = await new Url({ urlOriginal: req.body.link });
+		const newUrl = await new Url({ urlOriginal: link });
 		newUrl.customUrl = req.body.edit;
 
 		await newUrl.save();

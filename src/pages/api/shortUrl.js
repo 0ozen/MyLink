@@ -8,7 +8,12 @@ export default async function handler(req, res) {
 	try {
 		await dbConnect();
 
-		const data = await Url.findOne({ urlOriginal: req.body.link });
+    let link = req.body.link
+    if (link.search(/^http[s]?\:\/\//) == -1) {
+      link = 'https://' + link;
+    }
+
+		const data = await Url.findOne({ urlOriginal: link });
 
 		if (data) {
 			data.shortUrl = nanoid(7);
@@ -16,7 +21,7 @@ export default async function handler(req, res) {
 			return res.status(201).send(data.shortUrl);
 		}
 
-		const newUrl = await new Url({ urlOriginal: req.body.link });
+		const newUrl = await new Url({ urlOriginal: link });
 		await newUrl.save();
 		return res.status(201).send(newUrl.shortUrl);
 	} catch (error) {
