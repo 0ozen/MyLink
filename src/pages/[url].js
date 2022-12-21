@@ -21,17 +21,17 @@ export async function getServerSideProps(req, res) {
 			};
 		} else {
 			return {
-				props: { find: false  , message : "Url not Found" },
+				props: { find: false, message: "Url not Found" },
 			};
 		}
 	} catch (error) {
 		console.log(error.message);
 		return {
-			props: { find: false , message : "Server Error" },
+			props: { find: false, message: "Server Error" },
 		};
 	}
 }
 
-export default function ShortIdPage({ find,message }) {
+export default function ShortIdPage({ find, message }) {
 	return find ? <div>Redirect</div> : <div>{message}</div>;
 }

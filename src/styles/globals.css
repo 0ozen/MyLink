@@ -20,7 +20,7 @@ button {
 	border-radius: 10px;
 	border: none;
 	cursor: pointer;
-  background-color: rgb(223, 223, 223);
+	background-color: rgb(223, 223, 223);
 	color: #0070f3;
 }
 
@@ -29,11 +29,11 @@ button:hover {
 }
 
 /*@media (prefers-color-scheme: dark) {*/
-	html {
-		color-scheme: dark;
-	}
-	body {
-		color: white;
-		background: black;
-	}
+html {
+	color-scheme: dark;
+}
+body {
+	color: white;
+	background: black;
+}
 /*}*/

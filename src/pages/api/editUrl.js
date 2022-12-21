@@ -2,15 +2,15 @@ import dbConnect from "../../utils/mongoose";
 import Url from "../../models/link";
 
 export default async function handler(req, res) {
-  
-	if (req.body.link === "") return res.status(400).json("Ingrese una url valida");
+	if (req.body.link === "")
+		return res.status(400).json("Ingrese una url valida");
 
-  try {
-    await dbConnect();
-    let link = req.body.link
-    if (link.search(/^http[s]?\:\/\//) == -1) {
-      link = 'https://' + link;
-    }
+	try {
+		await dbConnect();
+		let link = req.body.link;
+		if (link.search(/^http[s]?\:\/\//) == -1) {
+			link = "https://" + link;
+		}
 		const data = await Url.findOne({ urlOriginal: link });
 
 		if (data) {

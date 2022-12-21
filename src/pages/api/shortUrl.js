@@ -3,11 +3,11 @@ import Url from "../../models/link";
 import { nanoid } from "nanoid";
 
 export default async function handler(req, res) {
-  let link = req.body.link;
+	let link = req.body.link;
 
-  if (link.search(/^http[s]?\:\/\//) == -1) {
-    link = "https://" + link;
-  }
+	if (link.search(/^http[s]?\:\/\//) == -1) {
+		link = "https://" + link;
+	}
 
 	const isValidUrl = (urlString) => {
 		try {

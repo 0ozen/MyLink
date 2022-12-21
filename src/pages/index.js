@@ -1,6 +1,8 @@
 import Head from "next/head";
 import { useState } from "react";
 import styles from "../styles/Home.module.css";
+import Copy from "../icons/Copi";
+import Close from "../icons/Close";
 
 export default function Home() {
 	const [myLink, setMyLink] = useState("");
@@ -10,6 +12,7 @@ export default function Home() {
 	const [showShortUrl, setShowShortUrl] = useState(false);
 	const [edit, setEdit] = useState("");
 	const [success, setSuccess] = useState(false);
+	const [loader, setLoader] = useState(false);
 
 	function restart() {
 		setShow(() => false);
@@ -35,12 +38,13 @@ export default function Home() {
 			},
 			body: JSON.stringify({ link }),
 		});
-    if(res.status === 201) setSuccess(true);
+		if (res.status === 201) setSuccess(true);
 		const data = await res.text();
 		setMyLink(data);
 	}
 
 	async function sendCustomLink(e) {
+		setLoader(true);
 		const res = await fetch("/api/editUrl", {
 			method: "POST",
 			headers: {
@@ -49,6 +53,7 @@ export default function Home() {
 			body: JSON.stringify({ edit, link }),
 		});
 		const data = await res.text();
+		if (data) setLoader(false);
 		if (data === edit) setSuccess(true);
 	}
 
@@ -71,11 +76,13 @@ export default function Home() {
 						className={
 							cardShadow ? `${styles.card} ${styles.cardShadow}` : styles.card
 						}>
-						<input placeholder="Ingresa tu link" onChange={(e) => setLink(e.target.value)}></input>
-					  <div>
-              <button onClick={customUrl}>Editar url</button>
-						  <button onClick={shortUrl}>Acortar link</button>
-            </div>	
+						<input
+							placeholder="Ingresa tu link"
+							onChange={(e) => setLink(e.target.value)}></input>
+						<div>
+							<button onClick={customUrl}>Editar url</button>
+							<button onClick={shortUrl}>Acortar link</button>
+						</div>
 					</div>
 
 					<div
@@ -83,26 +90,34 @@ export default function Home() {
 						style={{ display: show ? "" : "none" }}>
 						<h2>Editar url:</h2>
 						<div className={styles.mylink}>
-              <span> 
-						  <code className={styles.linkName}>0one.vercel.app/</code>
-							<input
-								className={styles.edited}
-								value={edit}
-								onChange={(e) => setEdit(e.target.value)}/>
-              </span>
-              <button onClick={restart}>X</button>
+							<span>
+								<code className={styles.linkName}>0one.vercel.app/</code>
+								<input
+									className={styles.edited}
+									value={edit}
+									onChange={(e) => setEdit(e.target.value)}
+								/>
+							</span>
+							{loader && <div className={styles.loader}></div>}
+
+							<button className={styles.close} onClick={restart}>
+								<Close width={18} />
+							</button>
+
 							{success && (
-								<button
-									onClick={() =>
-										navigator.clipboard.writeText("0one.vercel.app/" + edit)
-									}>
-									Copy
-								</button>
+								<>
+									<button
+										className={styles.copy}
+										onClick={() =>
+											navigator.clipboard.writeText("0one.vercel.app/" + edit)
+										}>
+										<Copy width={18} />
+									</button>
+								</>
 							)}
 						</div>
 						<div className={styles.options}>
 							<button onClick={sendCustomLink}>Enviar</button>
-							
 						</div>
 					</div>
 
@@ -110,25 +125,26 @@ export default function Home() {
 						className={styles.cardEdit}
 						style={{ display: showShortUrl ? "" : "none" }}>
 						<h2>Short Link:</h2>
-            
+
 						<div className={styles.mylink}>
-              <span> 
-							0one.vercel.app/
-							<input className={styles.edited} defaultValue={myLink}/>
-              </span>
-              <button className={styles.close} onClick={restart}>X</button>
+							<span>
+								0one.vercel.app/
+								<input className={styles.edited} defaultValue={myLink} />
+							</span>
+							<button className={styles.close} onClick={restart}>
+								<Close width={18} />
+							</button>
 							{success && (
 								<button
+									className={styles.copy}
 									onClick={() =>
 										navigator.clipboard.writeText("0one.vercel.app/" + myLink)
 									}>
-									Copy
+									<Copy width={18} />
 								</button>
 							)}
 						</div>
-						<div className={styles.options}>
-							
-						</div>
+						<div className={styles.options}></div>
 					</div>
 				</div>
 			</main>
