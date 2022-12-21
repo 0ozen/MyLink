@@ -3,15 +3,24 @@ import Url from "../../models/link";
 import { nanoid } from "nanoid";
 
 export default async function handler(req, res) {
-	if (!req.body.link) return res.status(400).json("Please provide url");
+  let link = req.body.link;
+
+  if (link.search(/^http[s]?\:\/\//) == -1) {
+    link = "https://" + link;
+  }
+
+	const isValidUrl = (urlString) => {
+		try {
+			return Boolean(new URL(urlString));
+		} catch (e) {
+			return false;
+		}
+	};
+
+	if (!isValidUrl(link)) return res.status(400).json("Ingrese una url valida");
 
 	try {
 		await dbConnect();
-
-    let link = req.body.link
-    if (link.search(/^http[s]?\:\/\//) == -1) {
-      link = 'https://' + link;
-    }
 
 		const data = await Url.findOne({ urlOriginal: link });
 

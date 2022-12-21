@@ -35,8 +35,8 @@ export default function Home() {
 			},
 			body: JSON.stringify({ link }),
 		});
+    if(res.status === 201) setSuccess(true);
 		const data = await res.text();
-		setSuccess(true);
 		setMyLink(data);
 	}
 
@@ -71,24 +71,26 @@ export default function Home() {
 						className={
 							cardShadow ? `${styles.card} ${styles.cardShadow}` : styles.card
 						}>
-						<input onChange={(e) => setLink(e.target.value)}></input>
-						<button onClick={customUrl}>Editar url</button>
-						<button onClick={shortUrl}>Acortar link</button>
+						<input placeholder="Ingresa tu link" onChange={(e) => setLink(e.target.value)}></input>
+					  <div>
+              <button onClick={customUrl}>Editar url</button>
+						  <button onClick={shortUrl}>Acortar link</button>
+            </div>	
 					</div>
 
 					<div
 						className={styles.cardEdit}
 						style={{ display: show ? "" : "none" }}>
 						<h2>Editar url:</h2>
-						<p className={styles.mylink}>
-							0one.vercel.app/
+						<div className={styles.mylink}>
+              <span> 
+						  <code className={styles.linkName}>0one.vercel.app/</code>
 							<input
 								className={styles.edited}
 								value={edit}
-								onChange={(e) => setEdit(e.target.value)}></input>
-						</p>
-						<div className={styles.options}>
-							<button onClick={sendCustomLink}>Enviar</button>
+								onChange={(e) => setEdit(e.target.value)}/>
+              </span>
+              <button onClick={restart}>X</button>
 							{success && (
 								<button
 									onClick={() =>
@@ -97,7 +99,10 @@ export default function Home() {
 									Copy
 								</button>
 							)}
-							<button onClick={restart}>X</button>
+						</div>
+						<div className={styles.options}>
+							<button onClick={sendCustomLink}>Enviar</button>
+							
 						</div>
 					</div>
 
@@ -105,11 +110,13 @@ export default function Home() {
 						className={styles.cardEdit}
 						style={{ display: showShortUrl ? "" : "none" }}>
 						<h2>Short Link:</h2>
-						<p className={styles.mylink}>
+            
+						<div className={styles.mylink}>
+              <span> 
 							0one.vercel.app/
-							<input className={styles.edited} defaultValue={myLink}></input>
-						</p>
-						<div className={styles.options}>
+							<input className={styles.edited} defaultValue={myLink}/>
+              </span>
+              <button className={styles.close} onClick={restart}>X</button>
 							{success && (
 								<button
 									onClick={() =>
@@ -118,7 +125,9 @@ export default function Home() {
 									Copy
 								</button>
 							)}
-							<button onClick={restart}>X</button>
+						</div>
+						<div className={styles.options}>
+							
 						</div>
 					</div>
 				</div>
