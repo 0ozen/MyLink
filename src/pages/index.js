@@ -28,6 +28,7 @@ export default function Home() {
 	}
 
 	async function shortUrl(e) {
+    setLoader(true);
 		setCardShadow(() => !cardShadow);
 		setShowShortUrl(() => !showShortUrl);
 		e.preventDefault();
@@ -38,6 +39,7 @@ export default function Home() {
 			},
 			body: JSON.stringify({ link }),
 		});
+    if (res.status) setLoader(false);
 		if (res.status === 201) setSuccess(true);
 		const data = await res.text();
 		setMyLink(data);
@@ -131,6 +133,8 @@ export default function Home() {
 								0one.vercel.app/
 								<input className={styles.edited} defaultValue={myLink} />
 							</span>
+              {loader && <div className={styles.loader}></div>}
+
 							<button className={styles.close} onClick={restart}>
 								<Close width={18} />
 							</button>
