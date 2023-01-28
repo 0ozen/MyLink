@@ -34,6 +34,6 @@ html {
 }
 body {
 	color: white;
-	background: black;
+	background-image: linear-gradient(0deg, #212121 0%, #0f0f0f 50%);
 }
 /*}*/

@@ -27,16 +27,37 @@
 	align-items: center;
 	flex-grow: 1;
 }
-
-.title a {
-	color: #0070f3;
-	text-decoration: none;
+.shortAndEdit {
+	margin-top: 1rem;
 }
 
-.title a:hover,
-.title a:focus,
-.title a:active {
-	text-decoration: underline;
+/* -webkit-background-clip: text;
+-webkit-text-fill-color: transparent; */
+.title a {
+	position: relative;
+	background: -webkit-linear-gradient(77deg, #0070f3 0%, #00f4ff 100%);
+	text-decoration: none;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-size: 200%;
+}
+.title a:hover {
+  transition: .2s cubic-bezier(0.19, 1, 0.22, 1);
+  background-position: 80% 0%;
+}
+
+/* @keyframes hover {
+	0% {
+		background-position: 0% 100%;
+	}
+	100% {
+		background-position: 100% 0%;
+	}
+} */
+
+@media (hover: hover) {
+}
+@media (hover: none) {
 }
 
 .title {
@@ -88,15 +109,25 @@
 }
 
 .card input:focus {
-	box-shadow: 0px 0px 30px 0 #274c6892;
+	box-shadow: 1px 1px 5px #3e3e3ed2;
 }
 
 .card button {
 	margin: 8px 8px;
 }
 
-.card button:hover {
-	background-color: rgb(187, 187, 187);
+@media (hover: hover) {
+	.card button:hover {
+		background-color: rgb(187, 187, 187);
+	}
+	.card button:active {
+		background-color: rgb(156, 156, 156);
+	}
+}
+@media (hover: none) {
+	.card button:active {
+		background-color: rgb(156, 156, 156);
+	}
 }
 
 .cardShadow {
