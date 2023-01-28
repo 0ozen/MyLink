@@ -31,8 +31,6 @@
 	margin-top: 1rem;
 }
 
-/* -webkit-background-clip: text;
--webkit-text-fill-color: transparent; */
 .title a {
 	position: relative;
 	background: -webkit-linear-gradient(77deg, #0070f3 0%, #00f4ff 100%);
@@ -41,23 +39,18 @@
 	-webkit-text-fill-color: transparent;
 	background-size: 200%;
 }
-.title a:hover {
-  transition: .2s cubic-bezier(0.19, 1, 0.22, 1);
-  background-position: 80% 0%;
-}
-
-/* @keyframes hover {
-	0% {
-		background-position: 0% 100%;
-	}
-	100% {
-		background-position: 100% 0%;
-	}
-} */
 
 @media (hover: hover) {
+	.title a:hover {
+		transition: 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+		background-position: 80% 0%;
+	}
 }
 @media (hover: none) {
+  .title a:active {
+    transition: .2s cubic-bezier(0.19, 1, 0.22, 1);
+    background-position: 80% 0%;
+  }
 }
 
 .title {
